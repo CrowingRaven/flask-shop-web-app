@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+
+{% extends "base.html" %}
+
+{% block content%}
+
+    <h1>{{ hardware.name }}</h1>
+    <p>Price: £{{ hardware.price }}</p>
+    <p>{{ hardware.description }}</p>
+    <p>{{ hardware.impact }} grams of CO2 produced to make</p>
+    <p>Added {{ num }} {{ hardware.name }}(s) to your basket!</p>
+    <p><img src="{{ url_for('static', filename=hardware.source) }}"></p>
+
+{% endblock %}

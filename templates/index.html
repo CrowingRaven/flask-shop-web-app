@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Web development technologies</h1>
+    <hr>
+
+    <form method="get" action="/">
+        <label for="sort">Sort by</label>
+        <select name="sort" id="sort" onchange="this.form.submit()">
+            <option value="name" {% if sort == 'name' %}selected{% endif %}>Name</option>
+            <option value="price" {% if sort == 'price' %}selected{% endif %}>Price</option>
+            <option value="impact" {% if sort == 'impact' %}selected{% endif %}>Environmental Impact</option>
+        </select>
+    </form>
+
+    <ul style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); padding: 10px;">
+        {% for product in hardware %}
+        <li style="border: 1px solid #ccc; padding: 10px; text-align: center;">
+            <a href={{ url_for('singleProductPage', hardId=product.id) }}>
+                {{ product.name }}
+                <br>
+                £{{ product.price }}
+                <br>
+                <img src="{{ url_for('static', filename=product.source) }}" alt="{{ product.name }}" style="max-width: 100%; height: auto;">
+            </a>
+            <br>
+            <p> {{ product.impact }} grams of CO2 produced to make</p>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

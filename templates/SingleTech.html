@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{%block content%}
+    <h1>{{ hardware.name }}</h1>
+    <p>Price: £{{ hardware.price }}</p>
+    <p>{{ hardware.description }}</p>
+    <p><img src="{{ url_for('static', filename=hardware.source) }}"></p>
+    <p>{{ hardware.impact }} grams of CO2 produced to make</p>
+    <div class="col-md-3">
+        {{ wtf.quick_form(form) }}
+    </div>
+    
+{%endblock%}

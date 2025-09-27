@@ -1,0 +1,20 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+    Tech R Us
+{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-inverse">
+        <div class="container" style="margin: 0">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ url_for('galleryPage') }}">Tech R Us</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="{{ url_for('galleryPage') }}">Gallery</a></li>
+                <li><a href="{{ url_for('basketPage') }}">Basket</a></li>
+            </ul>
+        </div>
+    </nav>
+{% endblock %}

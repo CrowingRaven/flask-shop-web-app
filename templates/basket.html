@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Your Basket</h1>
+<table style="border-spacing: 15px; border-collapse: separate;">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th></th>
+            <th>Amount</th>
+            <th>Price per Item</th>
+            <th>Total Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item, amount in items %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td><img src="{{ url_for("static", filename=item.source) }}" alt="{{ item.name }}" style="width:100px;height:auto;"></td>
+            <td>{{ amount }}</td>
+            <td>${{ item.price }}</td>
+            <td>${{ item.price * amount }}</td>
+            <td>
+                <form method="POST" action="{{ url_for('removeFromBasket', hardId=item.id) }}">
+                    <button type="submit">Remove</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<h2>Total Basket Price: ${{ total_price }}</h2>
+<form action="{{ url_for('checkoutPage')}}">
+    <input type="submit" value="Go to checkout"/>
+</form>
+{% endblock %}
